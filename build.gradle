@@ -1,5 +1,6 @@
 plugins {
-    id "com.jfrog.bintray" version "1.6"
+    id 'com.jfrog.bintray' version '1.6'
+    id 'edu.wpi.first.wpilib.versioning.WPILibVersioningPlugin' version '1.1'
 }
 
 import org.gradle.internal.os.OperatingSystem
@@ -15,7 +16,7 @@ targetCompatibility = 1.6
 
 def date = new Date()
 def formattedDate = date.format('yyMMdd')
-version = "3.1.0"
+version = WPILibVersion.version
 
 def rootPath = Paths.get(projectDir.canonicalPath)
 def cmakeBuildDirectory = rootPath.resolve('build')
@@ -273,11 +274,6 @@ publishing {
                 licenseNode.appendNode('name', 'BSD 3-Clause License')
                 licenseNode.appendNode('url', 'https://opensource.org/licenses/BSD-3-Clause')
             }
-        }
-    }
-    repositories {
-        maven {
-            url "${System.getProperty('user.home')}/releases/maven/${project.repo}"
         }
     }
 }
